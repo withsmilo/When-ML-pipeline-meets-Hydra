@@ -1,0 +1,5 @@
+cluster:
+  name: cluster_1
+  url: https://cluster/1/url
+  id: user_1
+  pw: pw_1

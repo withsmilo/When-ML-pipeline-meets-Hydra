@@ -1,0 +1,4 @@
+model:
+  name: model_2
+  input_path: /path/of/input/path/2
+  output_path: /path/of/output/path/2

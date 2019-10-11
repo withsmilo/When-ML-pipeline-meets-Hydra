@@ -2,4 +2,4 @@
 Contributors
 ============
 
-* Sungjun, Kim <sungjunkim@linecorp.com>
+* Sungjun, Kim <smilolistener@gmail.com>

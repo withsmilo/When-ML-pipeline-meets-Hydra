@@ -1,0 +1,16 @@
+defaults:
+  - c: help
+  - c/preprocessing_sub: foo
+  - c/modeling_sub: foo
+  - c/deployment_sub: foo
+  - preprocessing/dataset: dataset_1
+  - preprocessing/param: param_1
+  - modeling/model: model_1
+  - modeling/param: param_1
+  - deployment/cluster: cluster_1
+
+hydra:
+  run:
+    dir: .outputs/${now:%Y-%m-%d}
+  sweep:
+    dir: .multirun/${now:%Y-%m-%d}

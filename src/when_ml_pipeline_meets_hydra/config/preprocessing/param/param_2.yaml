@@ -1,0 +1,5 @@
+p_param:
+  name: param_2
+  output_path: /path/of/output/path/2
+  key_2_1: value_2_1
+  key_2_2: value_2_2

@@ -89,42 +89,37 @@ $ when_ml_pipeline_meets_hydra \
 [2019-10-13 22:12:22,032] - 	#0 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_1 deployment/cluster=cluster_1 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=preprocessing
 ========== Run preprocessing's 'foo' subcommand ==========
 dataset:
-{
-  "name": "dataset_1",
-  "path": "/path/of/dataset/1"
-}
+  name: dataset_1
+  path: /path/of/dataset/1
+
 p_param:
-{
-  "name": "param_1",
-  "output_path": "/path/of/output/path/1",
-  "key_1_1": "value_1_1",
-  "key_1_2": "value_1_2"
-}
+  key_1_1: value_1_1
+  key_1_2: value_1_2
+  name: param_1
+  output_path: /path/of/output/path/1
+
 Do something here!
 [2019-10-13 22:12:22,175] - 	#1 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_1 deployment/cluster=cluster_1 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=modeling
 ========== Run modeling's 'foo' subcommand ==========
 model:
-{
-  "name": "model_1",
-  "input_path": "/path/of/input/path/1",
-  "output_path": "/path/of/output/path/1"
-}
+  input_path: /path/of/input/path/1
+  name: model_1
+  output_path: /path/of/output/path/1
+
 m_param:
-{
-  "name": "param_1",
-  "hyperparam_key_1_1": "hyperparam_value_1_1",
-  "hyperparam_key_1_2": "hyperparam_value_1_2"
-}
+  hyperparam_key_1_1: hyperparam_value_1_1
+  hyperparam_key_1_2: hyperparam_value_1_2
+  name: param_1
+
 Do something here!
 [2019-10-13 22:12:22,314] - 	#2 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_1 deployment/cluster=cluster_1 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=deployment
 ========== Run deployment's 'foo' subcommand ==========
 cluster:
-{
-  "name": "cluster_1",
-  "url": "https://cluster/1/url",
-  "id": "user_1",
-  "pw": "pw_1"
-}
+  id: user_1
+  name: cluster_1
+  pw: pw_1
+  url: https://cluster/1/url
+
 Do something here!
 ```
 
@@ -151,43 +146,38 @@ $ when_ml_pipeline_meets_hydra \
 [2019-10-13 22:13:13,898] - 	#0 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=preprocessing
 ========== Run preprocessing's 'foo' subcommand ==========
 dataset:
-{
-  "name": "dataset_1",
-  "path": "/path/of/dataset/1"
-}
+  name: dataset_1
+  path: /path/of/dataset/1
+
 p_param:
-{
-  "name": "param_1",
-  "output_path": "/path/of/output/path/1",
-  "key_1_1": "value_1_1",
-  "key_1_2": "value_1_2"
-}
+  key_1_1: value_1_1
+  key_1_2: value_1_2
+  name: param_1
+  output_path: /path/of/output/path/1
+
 Do something here!
 [2019-10-13 22:13:14,040] - 	#1 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=modeling
 ========== Run modeling's 'foo' subcommand ==========
 model:
-{
-  "name": "model_1",
-  "input_path": "/path/of/input/path/1",
-  "output_path": "/path/of/output/path/1"
-}
+  input_path: /path/of/input/path/1
+  name: model_1
+  output_path: /path/of/output/path/1
+
 m_param:
-{
-  "name": "param_2",
-  "hyperparam_key_2_1": "hyperparam_value_2_1",
-  "hyperparam_key_2_2": "hyperparam_value_2_2"
-}
+  hyperparam_key_2_1: hyperparam_value_2_1
+  hyperparam_key_2_2: hyperparam_value_2_2
+  name: param_2
+
 Do something here!
 [2019-10-13 22:13:14,179] - 	#2 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=deployment
 ========== Run deployment's 'foo' subcommand ==========
 cluster:
-{
-  "name": "cluster_2",
-  "url": "https://cluster/2/url",
-  "id": "user_2",
-  "pw": "pw_3"  # For testing purposes, assume that this data is wrong.
-}
-Do something here!
+  id: user_2
+  name: cluster_2
+  pw: pw_3  # For testing purposes, assume that this data is wrong
+  url: https://cluster/2/url
+
+Do something here!!
 ```
 
 ### 3. Fix wrong configuration dynamically.
@@ -214,42 +204,37 @@ $ when_ml_pipeline_meets_hydra \
 [2019-10-13 22:13:43,246] - 	#0 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=preprocessing cluster.pw=pw_2
 ========== Run preprocessing's 'foo' subcommand ==========
 dataset:
-{
-  "name": "dataset_1",
-  "path": "/path/of/dataset/1"
-}
+  name: dataset_1
+  path: /path/of/dataset/1
+
 p_param:
-{
-  "name": "param_1",
-  "output_path": "/path/of/output/path/1",
-  "key_1_1": "value_1_1",
-  "key_1_2": "value_1_2"
-}
+  key_1_1: value_1_1
+  key_1_2: value_1_2
+  name: param_1
+  output_path: /path/of/output/path/1
+
 Do something here!
 [2019-10-13 22:13:43,391] - 	#1 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=modeling cluster.pw=pw_2
 ========== Run modeling's 'foo' subcommand ==========
 model:
-{
-  "name": "model_1",
-  "input_path": "/path/of/input/path/1",
-  "output_path": "/path/of/output/path/1"
-}
+  input_path: /path/of/input/path/1
+  name: model_1
+  output_path: /path/of/output/path/1
+
 m_param:
-{
-  "name": "param_2",
-  "hyperparam_key_2_1": "hyperparam_value_2_1",
-  "hyperparam_key_2_2": "hyperparam_value_2_2"
-}
+  hyperparam_key_2_1: hyperparam_value_2_1
+  hyperparam_key_2_2: hyperparam_value_2_2
+  name: param_2
+
 Do something here!
 [2019-10-13 22:13:43,531] - 	#2 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=deployment cluster.pw=pw_2
 ========== Run deployment's 'foo' subcommand ==========
 cluster:
-{
-  "name": "cluster_2",
-  "url": "https://cluster/2/url",
-  "id": "user_2",
-  "pw": "pw_2"
-}
+  id: user_2
+  name: cluster_2
+  pw: pw_2
+  url: https://cluster/2/url
+
 Do something here!
 ```
 As well as this scenario, you can think of various cases.

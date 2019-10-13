@@ -2,6 +2,12 @@
 
 [Hydra](https://github.com/facebookresearch/hydra) is a handy and powerful tool that can dramatically reduce our boilerplate codes and combine dynamically various configurations. I started out with the idea that `Hydra` could be used in **ML Pipeline** as well, and this is a Python app in the form of a template that I quickly implemented. Feedback is always welcome.
 
+## Assumption
+Our ML pipeline consists of the following three steps. I think this is the minimum steps for the ML pipeline, and you can add other steps as you need.
+* `preprocessing` : prepare data
+* `modeling` : train, validate model
+* `deployment` : deploy model to serving cluster
+
 ## Command Architecture
 This app has a two-level command architecture. ([c](https://github.com/withsmilo/When-ML-pipeline-meets-Hydra/tree/master/src/when_ml_pipeline_meets_hydra/config/c)) The command line arguments for executing each command are as follows:
 

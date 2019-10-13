@@ -24,22 +24,22 @@ Here are the configurations prepared for this app. ([preprocessing](https://gith
 ```
 ├── preprocessing
 │   ├── dataset
-│   │   ├── dataset_1.yaml  -> preprocessing/dataset=dataset_1.yaml
-│   │   └── dataset_2.yaml  -> preprocessing/dataset=dataset_2.yaml
+│   │   ├── dataset_1.yaml  -> preprocessing/dataset=dataset_1
+│   │   └── dataset_2.yaml  -> preprocessing/dataset=dataset_2
 │   └── param
-│       ├── param_1.yaml    -> preprocessing/param=param_1.yaml
-│       └── param_2.yaml    -> preprocessing/param=param_2.yaml
+│       ├── param_1.yaml    -> preprocessing/param=param_1
+│       └── param_2.yaml    -> preprocessing/param=param_2
 ├── modeling
 │   ├── model
-│   │   ├── model_1.yaml    -> modeling/model=model_1.yaml
-│   │   └── model_1.yaml    -> modeling/model=model_2.yaml
+│   │   ├── model_1.yaml    -> modeling/model=model_1
+│   │   └── model_1.yaml    -> modeling/model=model_2
 │   └── param
-│       ├── param_1.yaml    -> modeling/param=param_1.yaml
-│       └── param_2.yaml    -> modeling/param=param_2.yaml
+│       ├── param_1.yaml    -> modeling/param=param_1
+│       └── param_2.yaml    -> modeling/param=param_2
 └── deployment
     └── cluster
-        ├── cluster_1.yaml  -> deployment/cluster=cluster_1.yaml
-        └── cluster_1.yaml  -> deployment/cluster=cluster_2.yaml
+        ├── cluster_1.yaml  -> deployment/cluster=cluster_1
+        └── cluster_1.yaml  -> deployment/cluster=cluster_2
 ```
 
 ## How to Install
@@ -63,11 +63,11 @@ First of all, I will construct a new ML pipeline dynamically using all `*_1.yaml
 
 ```
 $ when_ml_pipeline_meets_hydra \
-  preprocessing/dataset=dataset_1.yaml \
-  preprocessing/param=param_1.yaml \
-  modeling/model=model_1.yaml \
-  modeling/param=param_1.yaml \
-  deployment/cluster=cluster_1.yaml \
+  preprocessing/dataset=dataset_1 \
+  preprocessing/param=param_1 \
+  modeling/model=model_1 \
+  modeling/param=param_1 \
+  deployment/cluster=cluster_1 \
   c/preprocessing_sub=foo \
   c/modeling_sub=foo \
   c/deployment_sub=foo \

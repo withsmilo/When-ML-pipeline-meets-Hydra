@@ -2,4 +2,4 @@ cluster:
   name: cluster_2
   url: https://cluster/2/url
   id: user_2
-  pw: pw_2
+  pw: pw_3  # For testing purposes, assume that this data is wrong.

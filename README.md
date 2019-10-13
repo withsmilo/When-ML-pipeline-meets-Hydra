@@ -59,7 +59,9 @@ $ when_ml_pipeline_meets_hydra --help
 ```
 
 ## ML Pipeline Test
-First of all, I will construct a new ML pipeline dynamically using all `*_1.yaml` configurations and executing the same `foo` subcommand per each step. The command you need is simple and structured.
+
+### 1. First taste
+I will construct a new ML pipeline dynamically using all `*_1.yaml` configurations and executing the same `foo` subcommand per each step. The command you need is simple and structured.
 
 ```
 $ when_ml_pipeline_meets_hydra \
@@ -76,16 +78,16 @@ $ when_ml_pipeline_meets_hydra \
 ```
 
 ```
-[2019-10-13 02:05:17,597] - Launching 3 jobs locally
-[2019-10-13 02:05:17,597] - Sweep output dir : .multirun/2019-10-13
-[2019-10-13 02:05:17,597] - 	#0 : preprocessing/dataset=dataset_1.yaml preprocessing/param=param_1.yaml modeling/model=model_1.yaml modeling/param=param_1.yaml deployment/cluster=cluster_1.yaml c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=preprocessing
+[2019-10-13 22:12:22,032] - Launching 3 jobs locally
+[2019-10-13 22:12:22,032] - Sweep output dir : .multirun/2019-10-13
+[2019-10-13 22:12:22,032] - 	#0 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_1 deployment/cluster=cluster_1 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=preprocessing
 ========== Run preprocessing's 'foo' subcommand ==========
-dataset_info:
+dataset:
 {
   "name": "dataset_1",
   "path": "/path/of/dataset/1"
 }
-param_info:
+p_param:
 {
   "name": "param_1",
   "output_path": "/path/of/output/path/1",
@@ -93,24 +95,24 @@ param_info:
   "key_1_2": "value_1_2"
 }
 Do something here!
-[2019-10-13 02:05:17,741] - 	#1 : preprocessing/dataset=dataset_1.yaml preprocessing/param=param_1.yaml modeling/model=model_1.yaml modeling/param=param_1.yaml deployment/cluster=cluster_1.yaml c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=modeling
+[2019-10-13 22:12:22,175] - 	#1 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_1 deployment/cluster=cluster_1 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=modeling
 ========== Run modeling's 'foo' subcommand ==========
-model_info:
+model:
 {
   "name": "model_1",
   "input_path": "/path/of/input/path/1",
   "output_path": "/path/of/output/path/1"
 }
-param_info:
+m_param:
 {
   "name": "param_1",
   "hyperparam_key_1_1": "hyperparam_value_1_1",
   "hyperparam_key_1_2": "hyperparam_value_1_2"
 }
 Do something here!
-[2019-10-13 02:05:17,878] - 	#2 : preprocessing/dataset=dataset_1.yaml preprocessing/param=param_1.yaml modeling/model=model_1.yaml modeling/param=param_1.yaml deployment/cluster=cluster_1.yaml c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=deployment
+[2019-10-13 22:12:22,314] - 	#2 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_1 deployment/cluster=cluster_1 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=deployment
 ========== Run deployment's 'foo' subcommand ==========
-cluster_info:
+cluster:
 {
   "name": "cluster_1",
   "url": "https://cluster/1/url",
@@ -120,15 +122,16 @@ cluster_info:
 Do something here!
 ```
 
-After then, if you'd like to deploy a model that has only changed the hyperparameter settings to another cluster, you can simply change `modeling/param` to `param_2.yaml` and `deployment/cluster` to `cluster_2.yaml` before executing your command. That's it!
+### 2. Change hyperparameters and serving cluster for your model.
+After then, if you'd like to deploy a model that has only changed the hyperparameter settings to another serving cluster, you can simply change `modeling/param` to `param_2.yaml` and `deployment/cluster` to `cluster_2.yaml` before executing your command. That's it!
 
 ```
 $ when_ml_pipeline_meets_hydra \
-  preprocessing/dataset=dataset_1.yaml \
-  preprocessing/param=param_1.yaml \
-  modeling/model=model_1.yaml \
-  modeling/param=param_2.yaml \
-  deployment/cluster=cluster_2.yaml \
+  preprocessing/dataset=dataset_1 \
+  preprocessing/param=param_1 \
+  modeling/model=model_1 \
+  modeling/param=param_2 \
+  deployment/cluster=cluster_2 \
   c/preprocessing_sub=foo \
   c/modeling_sub=foo \
   c/deployment_sub=foo \
@@ -137,16 +140,16 @@ $ when_ml_pipeline_meets_hydra \
 ```
 
 ```
-[2019-10-13 02:11:17,319] - Launching 3 jobs locally
-[2019-10-13 02:11:17,319] - Sweep output dir : .multirun/2019-10-13
-[2019-10-13 02:11:17,319] - 	#0 : preprocessing/dataset=dataset_1.yaml preprocessing/param=param_1.yaml modeling/model=model_1.yaml modeling/param=param_2.yaml deployment/cluster=cluster_2.yaml c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=preprocessing
+[2019-10-13 22:13:13,898] - Launching 3 jobs locally
+[2019-10-13 22:13:13,898] - Sweep output dir : .multirun/2019-10-13
+[2019-10-13 22:13:13,898] - 	#0 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=preprocessing
 ========== Run preprocessing's 'foo' subcommand ==========
-dataset_info:
+dataset:
 {
   "name": "dataset_1",
   "path": "/path/of/dataset/1"
 }
-param_info:
+p_param:
 {
   "name": "param_1",
   "output_path": "/path/of/output/path/1",
@@ -154,24 +157,87 @@ param_info:
   "key_1_2": "value_1_2"
 }
 Do something here!
-[2019-10-13 02:11:17,459] - 	#1 : preprocessing/dataset=dataset_1.yaml preprocessing/param=param_1.yaml modeling/model=model_1.yaml modeling/param=param_2.yaml deployment/cluster=cluster_2.yaml c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=modeling
+[2019-10-13 22:13:14,040] - 	#1 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=modeling
 ========== Run modeling's 'foo' subcommand ==========
-model_info:
+model:
 {
   "name": "model_1",
   "input_path": "/path/of/input/path/1",
   "output_path": "/path/of/output/path/1"
 }
-param_info:
+m_param:
 {
   "name": "param_2",
   "hyperparam_key_2_1": "hyperparam_value_2_1",
   "hyperparam_key_2_2": "hyperparam_value_2_2"
 }
 Do something here!
-[2019-10-13 02:11:17,588] - 	#2 : preprocessing/dataset=dataset_1.yaml preprocessing/param=param_1.yaml modeling/model=model_1.yaml modeling/param=param_2.yaml deployment/cluster=cluster_2.yaml c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=deployment
+[2019-10-13 22:13:14,179] - 	#2 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=deployment
 ========== Run deployment's 'foo' subcommand ==========
-cluster_info:
+cluster:
+{
+  "name": "cluster_2",
+  "url": "https://cluster/2/url",
+  "id": "user_2",
+  "pw": "pw_3"  # For testing purposes, assume that this data is wrong.
+}
+Do something here!
+```
+
+### 3. Fix wrong configuration dynamically.
+Oops. You found wrong configuration(`"pw": "pw_3"`) and want to fix it quickly. To do this, you only need to add `cluster.pw=pw_2` to you command line.
+
+```
+$ when_ml_pipeline_meets_hydra \
+  preprocessing/dataset=dataset_1 \
+  preprocessing/param=param_1 \
+  modeling/model=model_1 \
+  modeling/param=param_2 \
+  deployment/cluster=cluster_2 \
+  cluster.pw=pw_2 \
+  c/preprocessing_sub=foo \
+  c/modeling_sub=foo \
+  c/deployment_sub=foo \
+  c=preprocessing,modeling,deployment \
+  --multirun
+```
+
+```
+[2019-10-13 22:13:43,246] - Launching 3 jobs locally
+[2019-10-13 22:13:43,246] - Sweep output dir : .multirun/2019-10-13
+[2019-10-13 22:13:43,246] - 	#0 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=preprocessing cluster.pw=pw_2
+========== Run preprocessing's 'foo' subcommand ==========
+dataset:
+{
+  "name": "dataset_1",
+  "path": "/path/of/dataset/1"
+}
+p_param:
+{
+  "name": "param_1",
+  "output_path": "/path/of/output/path/1",
+  "key_1_1": "value_1_1",
+  "key_1_2": "value_1_2"
+}
+Do something here!
+[2019-10-13 22:13:43,391] - 	#1 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=modeling cluster.pw=pw_2
+========== Run modeling's 'foo' subcommand ==========
+model:
+{
+  "name": "model_1",
+  "input_path": "/path/of/input/path/1",
+  "output_path": "/path/of/output/path/1"
+}
+m_param:
+{
+  "name": "param_2",
+  "hyperparam_key_2_1": "hyperparam_value_2_1",
+  "hyperparam_key_2_2": "hyperparam_value_2_2"
+}
+Do something here!
+[2019-10-13 22:13:43,531] - 	#2 : preprocessing/dataset=dataset_1 preprocessing/param=param_1 modeling/model=model_1 modeling/param=param_2 deployment/cluster=cluster_2 c/preprocessing_sub=foo c/modeling_sub=foo c/deployment_sub=foo c=deployment cluster.pw=pw_2
+========== Run deployment's 'foo' subcommand ==========
+cluster:
 {
   "name": "cluster_2",
   "url": "https://cluster/2/url",
